@@ -404,3 +404,10 @@ public inline fun <T1, T2, T3, T4, T5, R> Flow<T1>.combineLatest(
     other4: Flow<T5>,
     crossinline transform: suspend (T1, T2, T3, T4, T5) -> R
 ): Flow<R> = combine(this, other, other2, other3, other4, transform)
+
+@Deprecated(
+    level = DeprecationLevel.ERROR,
+    message = "Flow analogues of 'switchMap' are 'transformLatest', 'flatMapLatest' and 'mapLatest'",
+    replaceWith = ReplaceWith("this.flatMapLatest(transform)")
+)
+public fun <T, R> Flow<T>.switchMap(transform: suspend (value: T) -> Flow<R>): Flow<R> = noImpl()
