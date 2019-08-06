@@ -410,4 +410,4 @@ public inline fun <T1, T2, T3, T4, T5, R> Flow<T1>.combineLatest(
     message = "Flow analogues of 'switchMap' are 'transformLatest', 'flatMapLatest' and 'mapLatest'",
     replaceWith = ReplaceWith("this.flatMapLatest(transform)")
 )
-public fun <T, R> Flow<T>.switchMap(transform: suspend (value: T) -> Flow<R>): Flow<R> = noImpl()
+public fun <T, R> Flow<T>.switchMap(transform: suspend (value: T) -> Flow<R>): Flow<R> = flatMapLatest(transform)
